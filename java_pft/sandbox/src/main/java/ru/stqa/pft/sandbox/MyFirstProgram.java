@@ -2,11 +2,13 @@ package ru.stqa.pft.sandbox;
 
 public class MyFirstProgram {
   public static void main(String[] args) {
-    String somebody = "world";
-    System.out.println("Hello, " + somebody +"!");
+    System.out.println("Hello, world");
+    double a = 3.0;
+    double b = 5.0;
+      System.out.println("Площать прямогульника со сторонами " + a + " и " + b + " = " + area(a,b));
+  }
 
-    double l = 8.0;
-    double s = l * l;
-    System.out.println("Площадь квадрата со стороной " + l + " = " + s);
+  public static double area(double a, double b){
+    return a * b;
   }
 }
