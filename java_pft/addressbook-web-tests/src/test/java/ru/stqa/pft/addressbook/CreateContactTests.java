@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CreateContactTests {
   private WebDriver wd;
-  
+
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
@@ -89,4 +89,3 @@ public class CreateContactTests {
     }
   }
 }
-
