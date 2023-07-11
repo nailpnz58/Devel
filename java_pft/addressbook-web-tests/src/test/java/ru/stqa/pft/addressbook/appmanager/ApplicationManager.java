@@ -1,17 +1,15 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestBase {
+public class ApplicationManager {
   public WebDriver wd;
 
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
     wd = new ChromeDriver();
     login("admin", "secret");
@@ -60,8 +58,7 @@ public class TestBase {
     wd.findElement(By.linkText("add new")).click();
   }
 
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     wd.quit();
   }
 
@@ -83,15 +80,15 @@ public class TestBase {
     }
   }
 
-  protected void selectAlert() {
+  public void selectAlert() {
     assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
   }
 
-  protected void deleteSelectedContact() {
+  public void deleteSelectedContact() {
     wd.findElement(By.xpath("//input[@value='Delete']")).click();
   }
 
-  protected void selectContact() {
+  public void selectContact() {
     wd.findElement(By.name("selected[]")).click();
   }
 
