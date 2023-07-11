@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.testng.Assert.assertTrue;
-
 public class ApplicationManager {
   public WebDriver wd;
   private SessionHelper sessionHelper;
@@ -30,14 +28,6 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
 
   public ContactHelper getContactHelper() {
     return contactHelper;

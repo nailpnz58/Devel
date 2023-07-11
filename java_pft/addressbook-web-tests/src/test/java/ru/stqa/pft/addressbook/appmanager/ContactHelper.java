@@ -8,36 +8,30 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import static org.testng.Assert.assertTrue;
 
-public class ContactHelper {
-  private WebDriver wd;
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void submitContactCreation() {
-    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.firstname());
-    wd.findElement(By.name("middlename")).click();
-    wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(contactData.middlename());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.lastname());
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(contactData.address());
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(contactData.phoneNumber());
+    type(By.name("firstname"), contactData.firstname());
+    click(By.name("middlename"));
+    type(By.name("middlename"), contactData.middlename());
+    click(By.name("lastname"));
+    type(By.name("lastname"), contactData.lastname());
+    click(By.name("address"));
+    type(By.name("address"), contactData.address());
+    click(By.name("home"));
+    type(By.name("home"), contactData.phoneNumber());
   }
 
   public void initContactCreation() {
-    wd.findElement(By.name("firstname")).click();
+    click(By.name("firstname"));
   }
 
   public boolean isElementPresent(By by) {
@@ -54,11 +48,11 @@ public class ContactHelper {
   }
 
   public void deleteSelectedContact() {
-    wd.findElement(By.xpath("//input[@value='Delete']")).click();
+    click(By.xpath("//input[@value='Delete']"));
   }
 
   public void selectContact() {
-    wd.findElement(By.name("selected[]")).click();
+    click(By.name("selected[]"));
   }
 
   public String closeAlertAndGetItsText() {
