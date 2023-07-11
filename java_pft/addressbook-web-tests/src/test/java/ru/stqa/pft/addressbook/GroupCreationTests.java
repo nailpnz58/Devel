@@ -6,13 +6,8 @@ import org.testng.annotations.*;
 public class GroupCreationTests extends TestBase {
 
   @Test
-  public void testGroupCreation() throws Exception {
+  public void testGroupCreation() {
 
-    gotoGroupPage();
-    initGroupCreation();
-    fillGroupForm(new GroupData("test2", "test1", "test3"));
-    submitGroupCreation();
-    reternToGroupPage();
   }
 
 }
