@@ -1,21 +1,19 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestBase {
+public class ApplicationManager {
   public WebDriver wd;
 
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
     wd = new ChromeDriver();
     login("admin", "secret");
-
   }
 
   public void login(String username, String password) {
@@ -57,15 +55,15 @@ public class TestBase {
     wd.findElement(By.linkText("groups")).click();
   }
 
-  protected void returnContactPage() {
+  public void returnContactPage() {
     wd.findElement(By.linkText("home")).click();
   }
 
-  protected void submitContactCreation() {
+  public void submitContactCreation() {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  protected void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(contactData.name());
@@ -83,16 +81,15 @@ public class TestBase {
     wd.findElement(By.name("home")).sendKeys(contactData.phoneNumber());
   }
 
-  protected void initContactCreation() {
+  public void initContactCreation() {
     wd.get("http://localhost:8080/addressbook/edit.php");
   }
 
-  protected void gotoContactPage() {
+  public void gotoContactPage() {
     wd.findElement(By.linkText("add new")).click();
   }
 
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     wd.quit();
   }
 
@@ -121,7 +118,6 @@ public class TestBase {
     }
   }
 
-
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
@@ -138,7 +134,6 @@ public class TestBase {
   public void selectGroup() {
     wd.findElement(By.name("selected[]")).click();
   }
-
 
   public String closeAlertAndGetItsText() {
     boolean acceptNextAlert = true;
